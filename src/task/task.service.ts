@@ -16,11 +16,15 @@ export class TaskService {
   findAll() {
     return this.taskRepo.find();
   }
-/*
+
   findOne(id: number) {
-    return this.taskRepo.findOne(id);
+    return this.taskRepo.findOne({
+      where: {
+          id: id
+      }
+  })
   }
-*/
+
   create(body: any) {
     const newTask = new Task();
     newTask.tittle = body.tittle;

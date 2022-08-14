@@ -14,12 +14,12 @@ export class TaskController {
   findAll() {
     return this.taskService.findAll();
   }
-/*
+
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.taskService.findOne(id);
   }
-*/
+
   @Post()
   create(@Body() body: any) {
     return this.taskService.create(body);
