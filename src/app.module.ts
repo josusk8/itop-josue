@@ -20,7 +20,9 @@ import { Task } from './task/entities/task.entity';
       database: 'pruebajunior',
       entities: [User, Task],
       synchronize: true,
+    
     }),
+  
   ],
 
   controllers: [AppController],
