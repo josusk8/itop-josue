@@ -6,6 +6,9 @@ import { TaskModule } from './task/task.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { Task } from './task/entities/task.entity';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -20,9 +23,8 @@ import { Task } from './task/entities/task.entity';
       database: 'pruebajunior',
       entities: [User, Task],
       synchronize: true,
-    
     }),
-  
+   
   ],
 
   controllers: [AppController],
