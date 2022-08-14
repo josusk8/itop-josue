@@ -1,37 +1,15 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
-import {  TaskService } from './task.service';
-import { ApiTags } from '@nestjs/swagger';
+import { Task } from './entities/task.entity';
+import { Crud, CrudController } from '@nestjsx/crud';
+import { TasksService } from './task.service';
 
 
-@ApiTags('Task')
-@Controller('task')
-export class TaskController {
-  constructor(
-    private taskService: TaskService
-  ) {}
-
-  @Get()
-  findAll() {
-    return this.taskService.findAll();
+@Crud({
+  model:{
+    type: Task
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.taskService.findOne(id);
-  }
-
-  @Post()
-  create(@Body() body: any) {
-    return this.taskService.create(body);
-  }
-/*
-  @Put(':id')
-  update(@Param('id') id: number, @Body() body: any) {
-    return this.taskService.update(id, body);
-  }
-*/
-  @Delete(':id')
-  delete(@Param('id') id: number) {
-    return this.taskService.remove(id);
-  }
+})
+@Controller('tasks')
+export class TasksController implements CrudController<Task>{
+  constructor (public service: TasksService){}
 }

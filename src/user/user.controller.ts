@@ -1,36 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller } from "@nestjs/common";
+import { Crud, CrudController } from "@nestjsx/crud";
+import { User } from "./entities/user.entity";
+import { UsersService } from "./user.service";
 
-@ApiTags('User')
-@Controller('user')
-export class UserController {
-  constructor(private readonly userService: UserService) {}
-
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+@Crud({
+  model:{
+    type: User
   }
-
-  @Get()
-  findAll() {
-    return this.userService.getAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.userService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.userService.remove(id);
-  }
+})
+@Controller('users')
+export class UsersController implements CrudController<User>{
+  constructor (public service: UsersService){}
 }

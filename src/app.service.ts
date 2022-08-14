@@ -6,11 +6,6 @@ export class AppService {
     return 'Hello World!';
   }
 
-  getUsers():string[]{
-    return[
-      "a", "b", "c"
-    ]
-  }
 }
 
 
